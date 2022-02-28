@@ -19,7 +19,7 @@ All these projects are exercises from the Three Journey course by Bruno Simon
 - color / albedo: provides color
 - alpha: white parts are shown, black parts arent shown
 - height / displacement: moves vertices. Towards white: vertices go up, towards black: vertices move down
-- normal: (is purple-ish). Adds details based on lighting. Not dependent on vertices.
+- normal: (is purple-ish). Adds details based on lighting. Not dependent on vertices. More performant than vertices, so try to use this instead of height if you can
 - ao map: puts 'fake shadows' in crevices to increase contrast
 - metalness: white: metallic, black: not metallic. Used to create reflection
 - roughness: often goes together with metalness. Is about amount of light dissipation (smoothness of surface). Also black and white
@@ -50,3 +50,24 @@ Texture websites: see lesson links. Also: Substance Designer.
 ## Materials
 
 - _Matcap_: You can find them on github and use them for matcap material, it's really cool. But check the license.
+
+- _MeshNormalMaterial_: Makes use of the normal attribute (property on normal), i.e. the direction of the outside points on the face of of the material (think of arrows on sphere). NormalMaterial shows that representation. We can use it in combination with light reflection. If normal is pointing towards direction of light, the face is lightened up.
+
+- _MeshMatcapMaterial_: It will take a texture and use normals to pick a color from the texture and apply it to the geometry. It will decide the color based on the normals relative to the camera: if you use it on a sphere and turn the camera, you will always see the same result. So: we can simulate light without having lights in scene.
+
+- _MeshDepthMaterial_: When geometry is close to camera it becomes whiter, further away it gets blacker.
+
+### Materials with light
+
+_MeshLambertMaterial_: Most simple material that has to do with light. It can have blurry lights, but it is very performant.
+
+_MeshPhongMaterial_: Very similar to Lambert, but the blurry lines are gone, and more strong light reflection
+
+_MeshStandardMaterial_: Supports light the best, met useful params like metalness and roughness. It uses PBR.
+
+_MeshPhysicalMaterial_: Is same as _MeshStandardMaterial_, but with a clear coat effect (above object). This makes it more realistic, depending on what you want to do. But it's less performant than _MeshStandardMaterial_.
+
+### Env maps
+
+Checkout HDRIHaven, they have a lot of nice env maps. Also, you don't need to have a license for them, but if you want you can credit them.
+To convert HDR files to cube maps, go to HDRI-to-CubeMap github tool.
