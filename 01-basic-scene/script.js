@@ -15,7 +15,7 @@ const sizes = {
 /**
  * Params:
  *
- * fov: vertical size of field of camera.
+ * fov: vertical angle (in degrees) of field of camera.
  * - with a large fov you can see far on left and right
  * - with a small one, you can see a small field very far away from you.
  *  and far objects will look more distorted

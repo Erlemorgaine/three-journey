@@ -71,3 +71,9 @@ _MeshPhysicalMaterial_: Is same as _MeshStandardMaterial_, but with a clear coat
 
 Checkout HDRIHaven, they have a lot of nice env maps. Also, you don't need to have a license for them, but if you want you can credit them.
 To convert HDR files to cube maps, go to HDRI-to-CubeMap github tool.
+
+## Cameras
+
+_ArrayCamera_: Does multiple renders for multiple areas, shows split screens.
+_StereoCamera_: Uses 2 cameras (2 renders) that mimic eyes, you can use it for VR.
+_CubeCamera_: 6 renders, Three js uses this to make env maps.
