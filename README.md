@@ -77,3 +77,34 @@ To convert HDR files to cube maps, go to HDRI-to-CubeMap github tool.
 _ArrayCamera_: Does multiple renders for multiple areas, shows split screens.
 _StereoCamera_: Uses 2 cameras (2 renders) that mimic eyes, you can use it for VR.
 _CubeCamera_: 6 renders, Three js uses this to make env maps.
+
+## Controls
+
+_DeviceOrientationControls_: Good for phone, you will see the camera move when your device moves.
+But, iOs stopped supporting it.
+
+_FlyControls_: Flying as in spaceship.
+
+_FirstPersonControls_: Like FlyControls, but the 'bird'/'plane' can't rotate on the z axis.
+
+_PointerLockControls_: I don't completely get this, but it's like navigating in an open world game.
+
+_TrackballControls_: Like OrbitControls, but there is no limit to the movement.
+
+_TransformControls_: Have nothing to do with the camera. You can use it to create an editor, you can move objects.
+
+_DragControls_: Also has nothing to do with the camera. You can drag objects.
+
+## Lights
+
+_AmbientLight_: Comes from all directions, so if setting only this, seems like MeshBasicMaterial
+
+_RectAreaLight_: Cool light
+
+_HemiSphereLight_: Also cool light
+
+_SpotLight_: Also cool light, like spotlight
+
+_Point_: Also cool light, comes from 1 point
+
+You can use light helpers (there are helpers for each light) to help you position the light. For spotLightHelper, you have to call helper.update() in the requestAnimationFrame.
