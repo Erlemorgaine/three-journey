@@ -26,13 +26,13 @@ const scene = new THREE.Scene();
 
  */
 // Ambient light
-const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
 gui.add(ambientLight, "intensity").min(0).max(1).step(0.001);
 
 scene.add(ambientLight);
 
 // Directional light
-const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+const directionalLight = new THREE.DirectionalLight(0xffffff, 0.4);
 directionalLight.position.set(2, 2, -1);
 
 gui.add(directionalLight, "intensity").min(0).max(1).step(0.001);
@@ -66,8 +66,39 @@ directionalLight.shadow.radius = 15;
 const directionalLightCamHelper = new THREE.CameraHelper(
   directionalLight.shadow.camera
 );
-// directionalLightCamHelper.visible = false;
+directionalLightCamHelper.visible = false;
 scene.add(directionalLightCamHelper);
+
+const spotLight = new THREE.SpotLight(0xffffff, 0.4, 10, Math.PI * 0.3);
+spotLight.castShadow = true;
+
+spotLight.shadow.mapSize.width = 1024;
+spotLight.shadow.mapSize.height = 1024;
+
+spotLight.shadow.camera.fov = 30;
+spotLight.shadow.camera.near = 1;
+spotLight.shadow.camera.far = 6;
+
+spotLight.position.set(0, 2, 2);
+
+scene.add(spotLight);
+scene.add(spotLight.target);
+
+// It seems that the order matters, we should to this last
+const spotLightCamHelper = new THREE.CameraHelper(spotLight.shadow.camera);
+// scene.add(spotLightCamHelper);
+
+// Point light does 6 renders for every direction,
+// since it uses a perspective camera that looks in every direction
+// Probably we see the helper looking down, because the last render is in that direction
+// In any case, this is why point light + shadows is not so performant
+const pointLight = new THREE.PointLight(0xffff, 0.3);
+pointLight.castShadow = true;
+pointLight.position.set(-1, 1, 0);
+scene.add(pointLight);
+
+const pointLightCamHelper = new THREE.CameraHelper(pointLight.shadow.camera);
+scene.add(pointLightCamHelper);
 
 /**
  * Materials
@@ -145,6 +176,13 @@ const renderer = new THREE.WebGLRenderer({
 });
 
 renderer.shadowMap.enabled = true;
+
+// Here you can set shadowmap algorithms.
+// They differ in performance and how soft they will be on the edges
+// For this map, radius won't work anymore to set blur
+// Default: PCFShadowMap
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
 renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
