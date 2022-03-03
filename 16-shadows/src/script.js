@@ -98,7 +98,7 @@ pointLight.position.set(-1, 1, 0);
 scene.add(pointLight);
 
 const pointLightCamHelper = new THREE.CameraHelper(pointLight.shadow.camera);
-scene.add(pointLightCamHelper);
+// scene.add(pointLightCamHelper);
 
 /**
  * Materials
@@ -107,6 +107,18 @@ const material = new THREE.MeshStandardMaterial();
 material.roughness = 0.7;
 gui.add(material, "metalness").min(0).max(1).step(0.001);
 gui.add(material, "roughness").min(0).max(1).step(0.001);
+
+/**
+ * Use a baked shadow texture to add a shadow, more performant.
+ * Use this with new THREE.MeshBasicMaterial({ map: bakeTexture }) ON THE PLANE
+ * But for dynamic scenes it's difficult to use baked shadows
+ *
+ * The simpleShadow is an option that does work with dynamic scene:
+ * you use a plane in combination with alphamap
+ */
+const textureLoader = new THREE.TextureLoader();
+const bakeTexture = textureLoader.load("/textures/bakedShadow.jpg");
+const simpleShadow = textureLoader.load("/textures/simpleShadow.jpg");
 
 /**
  * Objects
@@ -123,6 +135,20 @@ plane.position.y = -0.5;
 plane.receiveShadow = true;
 
 scene.add(sphere, plane);
+
+const sphereShadow = new THREE.Mesh(
+  new THREE.PlaneBufferGeometry(1.5, 1.5),
+  new THREE.MeshBasicMaterial({
+    color: 0xff,
+    alphaMap: simpleShadow,
+    transparent: true,
+  })
+);
+
+sphereShadow.rotation.x = Math.PI * -0.5;
+sphereShadow.position.y = plane.position.y + 0.01;
+
+scene.add(sphereShadow);
 
 /**
  * Sizes
@@ -175,7 +201,7 @@ const renderer = new THREE.WebGLRenderer({
   canvas: canvas,
 });
 
-renderer.shadowMap.enabled = true;
+// renderer.shadowMap.enabled = true;
 
 // Here you can set shadowmap algorithms.
 // They differ in performance and how soft they will be on the edges
@@ -193,6 +219,15 @@ const clock = new THREE.Clock();
 
 const tick = () => {
   const elapsedTime = clock.getElapsedTime();
+
+  // Move sphere and its shadow
+  sphere.position.x = Math.cos(elapsedTime);
+  sphere.position.z = Math.sin(elapsedTime);
+  sphere.position.y = Math.abs(Math.sin(elapsedTime * 3));
+
+  sphereShadow.position.x = Math.cos(elapsedTime);
+  sphereShadow.position.z = Math.sin(elapsedTime);
+  sphereShadow.material.opacity = 1.25 - sphere.position.y;
 
   // Update controls
   controls.update();
