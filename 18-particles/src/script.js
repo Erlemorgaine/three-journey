@@ -200,6 +200,8 @@ const tick = () => {
   // When you change an attribute on a geometry, you need to tell Three.js that attribute has updated
   // particleGeometry.attributes.position.needsUpdate = true;
 
+  particles.rotation.y = elapsedTime * 0.5;
+
   // Update controls
   controls.update();
 
