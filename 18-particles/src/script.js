@@ -28,19 +28,20 @@ const particleTexture = textureLoader.load("/textures/particles/6.png");
 // You will see this geometry, made up of n particles
 // const particleGeometry = new THREE.SphereBufferGeometry(1, 32, 32);
 const particleGeometry = new THREE.BufferGeometry();
-const particleAmount = 500; // Verticles
+const particleAmount = 1000; // Verticles
 
 const positions = new Float32Array(particleAmount * 3);
 
 // Colors * 3, because it's rgb
 const colors = new Float32Array(particleAmount * 3);
 
-// let angle;
+let angle;
+const step = 0.01;
 
 for (let i = 0; i < particleAmount * 3; i++) {
   // This makes for quite a starry effect, you're in a tube (with radius between 2 and 22)
   // Camera should be almost 0 for this to work
-  // const radius = 1; // + Math.random() * 20;
+  // const radius = 2 + Math.random() * 20;
   // if (i % 3 === 0) {
   //   // x
   //   // Radius should be from 3 to 9
@@ -53,11 +54,34 @@ for (let i = 0; i < particleAmount * 3; i++) {
   //   // y
   //   // positions[i] = 0;
   //   // positions[i] = Math.sin(angle) * radius;
-  //   positions[i] = (Math.random() - 0.5) * 5;
+  //   positions[i] = (Math.random() - 0.5) * 10;
   // }
 
+  // Make a SPIRAL
+  // let angle;
+  const radius = 1;
+  const outerRadius = 5;
+
+  const outerAngle = (Math.PI * 2 * 1) / particleAmount;
+  if (i % 3 === 0) {
+    // x
+    // Radius should be from 3 to 9
+
+    angle = Math.PI * 2 * i * step;
+    positions[i] = Math.cos(angle) * radius; // + Math.sin(outerAngle) * outerRadius;
+  } else if (i % 3 === 2) {
+    // z
+    positions[i] = Math.sin(angle) * radius;
+  } else {
+    // y
+    positions[i] = i * step - particleAmount * step; // + Math.cos(outerAngle) * outerRadius;
+    // positions[i] = Math.sin(angle) * radius;
+    // positions[i] = (Math.random() - 0.5) * 5;
+  }
+
   // ....... Or just random particles
-  positions[i] = (Math.random() - 0.5) * 10;
+  // Combine with commented out animation
+  // positions[i] = (Math.random() - 0.5) * 10;
 
   // if (i % 3 === 2) {
   //   colors[i] = 1;
@@ -164,17 +188,17 @@ const tick = () => {
   // Update particles
   // THIS IS BAD, because updating a lot of particles on each frame is bad
   // You should do this stuff with custom shaders
-  for (let i = 0; i < particleAmount; i++) {
-    const yIndex = i * 3 + 1;
-    const x = particleGeometry.attributes.position.array[i * 3];
-    particleGeometry.attributes.position.array[yIndex] = Math.sin(
-      // Offsetting elapsedTime with x gives a rippling effect
-      elapsedTime + x
-    );
-  }
+  // for (let i = 0; i < particleAmount; i++) {
+  //   const yIndex = i * 3 + 1;
+  //   const x = particleGeometry.attributes.position.array[i * 3];
+  //   particleGeometry.attributes.position.array[yIndex] = Math.sin(
+  //     // Offsetting elapsedTime with x gives a rippling effect
+  //     elapsedTime + x
+  //   );
+  // }
 
   // When you change an attribute on a geometry, you need to tell Three.js that attribute has updated
-  particleGeometry.attributes.position.needsUpdate = true;
+  // particleGeometry.attributes.position.needsUpdate = true;
 
   // Update controls
   controls.update();
