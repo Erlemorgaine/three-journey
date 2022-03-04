@@ -60,23 +60,28 @@ for (let i = 0; i < particleAmount * 3; i++) {
   // Make a SPIRAL
   // let angle;
   const radius = 1;
-  const outerRadius = 5;
+  const outerRadius = 3;
+  const iAngle = Math.PI * 2 * (i / particleAmount);
 
-  const outerAngle = (Math.PI * 2 * 1) / particleAmount;
+  // The one thing that I still need to do is somehow tilt every spiral well
   if (i % 3 === 0) {
     // x
-    // Radius should be from 3 to 9
-
     angle = Math.PI * 2 * i * step;
-    positions[i] = Math.cos(angle) * radius; // + Math.sin(outerAngle) * outerRadius;
+
+    // This kinda does what we want, but not entirely
+    // positions[i] = Math.cos(angle) * radius + Math.cos(iAngle) * outerRadius;
+    positions[i] = Math.cos(iAngle) * outerRadius;
   } else if (i % 3 === 2) {
     // z
-    positions[i] = Math.sin(angle) * radius;
+    // positions[i] = Math.sin(angle) * radius + Math.sin(iAngle) * outerRadius;
+    positions[i] = Math.cos(angle) * radius;
   } else {
     // y
-    positions[i] = i * step - particleAmount * step; // + Math.cos(outerAngle) * outerRadius;
-    // positions[i] = Math.sin(angle) * radius;
-    // positions[i] = (Math.random() - 0.5) * 5;
+
+    // This creates a spiraled column
+    //positions[i] = i * step - particleAmount * step;
+
+    positions[i] = Math.sin(angle) * radius + Math.sin(iAngle) * outerRadius;
   }
 
   // ....... Or just random particles
@@ -200,7 +205,7 @@ const tick = () => {
   // When you change an attribute on a geometry, you need to tell Three.js that attribute has updated
   // particleGeometry.attributes.position.needsUpdate = true;
 
-  particles.rotation.y = elapsedTime * 0.5;
+  // particles.rotation.y = elapsedTime * 0.5;
 
   // Update controls
   controls.update();
