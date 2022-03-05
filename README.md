@@ -108,3 +108,13 @@ _SpotLight_: Also cool light, like spotlight
 _Point_: Also cool light, comes from 1 point
 
 You can use light helpers (there are helpers for each light) to help you position the light. For spotLightHelper, you have to call helper.update() in the requestAnimationFrame.
+
+# Physics
+
+Sometimes you can choose a 2d library for 3D physics animations, better for performance. But if you want to move up en down (not stay on a plane), you'll have to choose a 3D library.
+
+Good libraries:
+
+- Ammo.js
+- Cannon.js
+- Oimo.js
