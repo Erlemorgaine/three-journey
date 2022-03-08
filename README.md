@@ -109,7 +109,7 @@ _Point_: Also cool light, comes from 1 point
 
 You can use light helpers (there are helpers for each light) to help you position the light. For spotLightHelper, you have to call helper.update() in the requestAnimationFrame.
 
-# Physics
+## Physics
 
 Sometimes you can choose a 2d library for 3D physics animations, better for performance. But if you want to move up en down (not stay on a plane), you'll have to choose a 3D library.
 
@@ -118,3 +118,22 @@ Good libraries:
 - Ammo.js
 - Cannon.js
 - Oimo.js
+
+## 3D model formats
+
+GLTF is becoming the standard. But, for simple models like models only with particles, you don't need it.
+
+# Blender
+
+_Areas_ are part of screen.
+
+- There is a timeline for animations
+- Outliner, where you can see all objects in scene (top right)
+- Properties areas
+
+You can change the area by clicking the buttons in top left.
+You can split areas by going in left corner (crosshair), then dragging.
+Use shortcuts, BUT: shortcuts are area sensitive.
+For _tracking_, i.e. going up / down / left / right: use 2 fingers + Shift
+For _dollying_ (zoom): 2 zingers + cmd.
+To reset view, press shift + c.

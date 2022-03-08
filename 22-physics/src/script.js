@@ -5,6 +5,12 @@ import * as dat from "lil-gui";
 import CANNON, { Vec3 } from "cannon";
 
 /**
+ * Stuff that we're not doing here but can be nice to use: Constraints. See docs.
+ * Also: using workers to use different threads on the CPU (physics uses CPU).
+ * Also: try Physijs, which uses Ammo.js You create both Three and physics object at the same time.
+ */
+
+/**
  * Debug
  */
 const gui = new dat.GUI();
