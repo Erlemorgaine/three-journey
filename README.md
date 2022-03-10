@@ -119,11 +119,16 @@ Good libraries:
 - Cannon.js
 - Oimo.js
 
+## Raycaster
+
+Raycaster literally casts a ray that intersects objects. needs an origin and a direction, both Vector3.
+You can go through 1 object multiple times! E.g. going horizontally a torusgeometry.
+
 ## 3D model formats
 
 GLTF is becoming the standard. But, for simple models like models only with particles, you don't need it.
 
-# Blender
+## Blender
 
 _Areas_ are part of screen.
 
@@ -137,3 +142,28 @@ Use shortcuts, BUT: shortcuts are area sensitive.
 For _tracking_, i.e. going up / down / left / right: use 2 fingers + Shift
 For _dollying_ (zoom): 2 zingers + cmd.
 To reset view, press shift + c.
+To select everything, A
+To unselect everything, AA
+To select in a rectangle, B
+To select in a circle, C
+To leave circle select, Esc
+To open object panel, shift + A
+To delete object, X
+Open panel to change object, F9
+To focus on object, /
+To hide object, H
+To hide non-selected objects, Shift + H
+To show all hidden objects, Alt + H,
+To show / hide menu on left, T
+To change position, rotation, scale: G, R, S + moving on trackpad
+To change on a certain axis G, R, S + X, Y, Z
+To exclude an axis, add Shift, e.g. G + Shift + Z
+To change mode, Ctrl + Tab
+To toggle object / edit mode, Tab
+To change nodes, edges, faces, hold G pressed
+To go to material menu, Z
+To open search, F3
+
+### Rendering engines
+
+Eevee is standard. Cycles is very realistic, but not performant (when you are animating)
