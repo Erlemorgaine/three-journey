@@ -29,7 +29,7 @@ void main()
     textureColor.b += uColor.b;
     textureColor.a = vRandom + 0.5;
 
-    gl_FragColor = textureColor;
+    gl_FragColor = vec4(textureColor.r, textureColor.b, textureColor.g, textureColor.a);
 
     // You can debug by showing values with gl_FragColor
 }
