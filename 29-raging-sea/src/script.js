@@ -83,12 +83,12 @@ gui
 
 gui
   .addColor(debugObject, "depthColor")
-  .onChange(() =>
+  .onFinishChange(() =>
     water.material.uniforms.uDepthColor.value.set(debugObject.depthColor)
   );
 gui
   .addColor(debugObject, "surfaceColor")
-  .onChange(() =>
+  .onFinishChange(() =>
     water.material.uniforms.uSurfaceColor.value.set(debugObject.surfaceColor)
   );
 

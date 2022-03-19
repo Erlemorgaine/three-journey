@@ -167,3 +167,9 @@ To open search, F3
 ### Rendering engines
 
 Eevee is standard. Cycles is very realistic, but not performant (when you are animating)
+
+## Debug panel
+
+You can hide or show gui by using gui.hide () or gui.show(). You can customize this to do it on a certain key, e.g. H, by listening to the keydown event.
+Also, you can start out with a closed panel by passing { closed: true } to dat.GUI.
+You can also provide width and height.
