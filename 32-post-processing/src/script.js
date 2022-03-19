@@ -239,6 +239,141 @@ gui.add(unrealBloomPass, "strength").min(0).max(2).step(0.01);
 gui.add(unrealBloomPass, "radius").min(0).max(2).step(0.01);
 gui.add(unrealBloomPass, "threshold").min(0).max(1).step(0.01);
 
+// Creating our own passes
+
+// TintPass
+
+const TintShader = {
+  uniforms: {
+    // The effect composer will automatically add the render target containing the previous render to the shader
+    tDiffuse: { value: null },
+    uTint: { value: new THREE.Vector3() },
+  },
+  vertexShader: `
+    varying vec2 vUv;
+
+    void main() {
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+
+      vUv = uv;
+  }`,
+  fragmentShader: `
+  uniform sampler2D tDiffuse;
+  uniform vec3 uTint;
+
+
+    varying vec2 vUv;
+
+
+    void main() {
+        vec4 color = texture2D(tDiffuse, vUv);
+
+        color.rgb += uTint;
+      gl_FragColor = color;
+  }`,
+};
+
+const tintPass = new ShaderPass(TintShader);
+effectComposer.addPass(tintPass);
+
+gui.add(tintPass.material.uniforms.uTint.value, "x").min(0).max(1).name("red");
+gui
+  .add(tintPass.material.uniforms.uTint.value, "y")
+  .min(0)
+  .max(1)
+  .name("green");
+gui.add(tintPass.material.uniforms.uTint.value, "z").min(0).max(1).name("blue");
+
+// Wave Shader
+
+const WaveShader = {
+  uniforms: {
+    // The effect composer will automatically add the render target containing the previous render to the shader
+    tDiffuse: { value: null },
+    uTime: { value: 0 },
+  },
+  vertexShader: `
+    varying vec2 vUv;
+
+    void main() {
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+
+      vUv = uv;
+  }`,
+  fragmentShader: `
+    uniform sampler2D tDiffuse;
+    uniform float uTime;
+
+    varying vec2 vUv;
+
+    void main() {
+        vec2 newUv = vec2(vUv.x, vUv.y + sin(vUv.x * 10.0 + uTime) * 0.1);
+        vec4 color = texture2D(tDiffuse, newUv);
+
+        gl_FragColor = color;
+  }`,
+};
+
+const wavePass = new ShaderPass(WaveShader);
+wavePass.enabled = false;
+effectComposer.addPass(wavePass);
+
+// Broken glass effect
+
+// Wave Shader
+
+const GlassShader = {
+  uniforms: {
+    // The effect composer will automatically add the render target containing the previous render to the shader
+    tDiffuse: { value: null },
+    uNormalMap: { value: null },
+  },
+  vertexShader: `
+    varying vec2 vUv;
+
+    void main() {
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+
+      vUv = uv;
+  }`,
+  fragmentShader: `
+    uniform sampler2D tDiffuse;
+    uniform sampler2D uNormalMap;
+
+    varying vec2 vUv;
+
+    void main() {
+        // * 2 - 1 because we need to go from 1 to -1 for texture
+        vec3 normalColor = texture2D(uNormalMap, vUv).xyz * 2.0 - 1.0;
+
+        // The * 0.1 makes the effect less strong
+        vec2 newUv = vUv + normalColor.xy * 0.1;
+        vec4 color = texture2D(tDiffuse, newUv);
+
+        // Normalising direction to 1
+        vec3 lightDirection = normalize(vec3(-1.0, 1.0, 0.0));
+
+        // Dot project checks if vectors are pointing toward each other??
+        // Anyway, the lightness adds light to one side of the beehive figure
+        float lightness = dot(normalColor, lightDirection);
+
+        // Clamp is to make sure we stay between 0 and 1
+        lightness = clamp(lightness, 0.0, 1.0);
+
+        // color.rgb += lightness;
+
+        gl_FragColor = color;
+  }`,
+};
+
+const glassPass = new ShaderPass(GlassShader);
+glassPass.material.uniforms.uNormalMap.value = textureLoader.load(
+  "/textures/interfaceNormalMap.png"
+);
+
+// glassPass.enabled = false;
+effectComposer.addPass(glassPass);
+
 // NB: The effect composer doesn't support outputEncoding,
 // to enforce it you need to put this shader with shaderpass
 const gammaCorrectPass = new ShaderPass(GammaCorrectionShader);
@@ -259,6 +394,9 @@ const clock = new THREE.Clock();
 
 const tick = () => {
   const elapsedTime = clock.getElapsedTime();
+
+  // Update wavePass uTime
+  wavePass.material.uniforms.uTime.value = elapsedTime;
 
   // Update controls
   controls.update();
