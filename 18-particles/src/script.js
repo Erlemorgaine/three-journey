@@ -28,7 +28,7 @@ const particleTexture = textureLoader.load("/textures/particles/6.png");
 // You will see this geometry, made up of n particles
 // const particleGeometry = new THREE.SphereBufferGeometry(1, 32, 32);
 const particleGeometry = new THREE.BufferGeometry();
-const particleAmount = 1000; // Verticles
+const particleAmount = 1000; // Vertices
 
 const positions = new Float32Array(particleAmount * 3);
 

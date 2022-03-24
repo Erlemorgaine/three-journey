@@ -173,3 +173,81 @@ Eevee is standard. Cycles is very realistic, but not performant (when you are an
 You can hide or show gui by using gui.hide () or gui.show(). You can customize this to do it on a certain key, e.g. H, by listening to the keydown event.
 Also, you can start out with a closed panel by passing { closed: true } to dat.GUI.
 You can also provide width and height.
+
+## Performance
+
+First thing to test: FPS, i.e. on what framerate it will be running (on a lot of devices it's 60). You can use stats.js to measure this.
+
+You can also run Chrome without FPS limit. In this case chrome will run as fast as it can. See 'Performance' tutorial to check which command you have to run to do this. You might have to open Chrome with the command twice.
+Why do this: if you unlock the frame rate and the frame rate is still close to 60 fps (like, 70-80), there is definitely a performance problem.
+NB if you test this, do it with the window fullsize.
+
+For GPU: you should have as little _draw calls_ as possible. To measure draw calls, you can use Spector.js extension. THIS IS REALLY COOL! It gives you a lot of information on your scene. The boxes saying 'drawElements' are draw calls.
+
+Also: renderer.info().
+
+Dispose of geometries when the scene is still there but you don't need a geometry anymore! Three.js has a whole page about this. In short, you need to call scene.remove(geometry) and geometry.dispose().
+
+About lights: AVOID THEM! Or use cheap ones, like AmbientLight, HemisphereLight, DirectionalLight.
+Also, avoid adding or removing lights, because then the materials supporting lights will have to recompile.
+
+Also: AVOID SHADOWS! Use baked shadows if you can. Or, if you use them, optimise shadow maps by using a camera helper: use it to adjust the shadow.camera near / far, size the shadowmap etc. Also, use castShadow and receiveShadow wisely (i.e. don't use them if you don't need to).
+Also, deactivate autoUpdate shadow if the scene (shadows) doesn't move a lot
+
+### TEXTURES
+
+- Use a texture that's as small as possible to stay within GPU memory limits. NB Weight of file doesn't matter. it's really the resolution that matters.
+
+- Also, always keep a power of 2 resolution (because of mipmapping)
+
+- Interesting: try to use the 'basis' format for images (but it's not easy)
+
+### Geometries
+
+- Don't update vertices (in the tick functions)!! Do it with vertex shaders.
+
+- Reuse geometry and material. With different sizes, you can scale the geometries.
+
+- If the geometries are not moving (independently?), you can _merge_ geometries. This will reduce the draw calls. You can du this with the BufferGeometryUtils, see script.js in performance for example.
+
+### Materials
+
+- Reuse materials
+
+- PhysicalMaterial and StandardMaterial are bad for performance. Try to use lambert or phong.
+
+### Meshes
+
+- You can use InstancedMesh, to reuse 1 geometry for multiple geometries on 1 mesh, but still transform every single geometry by using a Matrix4. Use .setPosition, .makeScale, and .makeRotationFromQuaternion.
+  Also use DynamicDrawUsage when you're going to update the matrices on every tick.
+
+### Models
+
+- Use low poly models, and for details use normalMaps.
+
+- Use DracoCompression (although they can lead to a freeze when uncompressing the models).
+
+- If you can, use gzip files, i.e. compression on server side.
+
+### Cameras
+
+- reduce near / far or fov (only counts for scenes in which there are many objects and it's okay to not see all of them)
+
+### Renderer
+
+- Don't use default pixel ratio, instead never more than 2
+- Don't use antialias if you don't actually see an alias
+
+### Shaders
+
+- Specify precision! lowp / highp. You can set it on the ShaderMaterial as a property: precision: 'lowp'
+
+- Avoid if statements
+
+- make use of being able to do variable.xy, variable.xyz
+
+- Use textures instead of Perlin noises
+
+- For values that remain constant, use defines (with #define). Instead of putting them in the shader, you can use them in defines property on ShaderMaterial (but then don't change them! Since the shader will recompile.)
+
+- Try to do calculations in vertex shader instead of in fragment shader (since we have less vertices than fragments)
