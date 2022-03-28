@@ -1,11 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>13 - 3D Text</title>
-</head>
-<body>
+  </head>
+  <body>
     <canvas class="webgl"></canvas>
-</body>
+    <button id="prev" class="nav previous">➜</button>
+    <button id="next" class="nav next">➜</button>
+  </body>
+  <style>
+    .nav {
+      position: absolute;
+      margin: 1rem;
+      padding: 0.5rem 1.5rem;
+      bottom: 0;
+      border-radius: 20px;
+      background-color: transparent;
+      border: none;
+      color: white;
+      transition: transform 0.5s;
+    }
+
+    .nav:hover {
+      cursor: pointer;
+    }
+
+    .previous {
+      transform: rotate(180deg);
+      background-image: linear-gradient(
+        hsla(24, 74%, 79%, 0.3),
+        hsla(290, 70%, 50%, 0.3)
+      );
+    }
+
+    .previous:hover {
+      transform: translateY(-7px) rotate(180deg) scale(1.2);
+    }
+
+    .next {
+      right: 0;
+      background-image: linear-gradient(
+        hsla(290, 70%, 50%, 0.3),
+        hsla(24, 74%, 79%, 0.3)
+      );
+    }
+
+    .next:hover {
+      transform: translateY(-7px) scale(1.2);
+    }
+  </style>
 </html>
