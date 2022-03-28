@@ -11,6 +11,17 @@
     <button id="next" class="nav next">➜</button>
   </body>
   <style>
+    body {
+      width: 100%;
+      height: 100vh;
+      background-image: linear-gradient(
+        hsl(121, 100%, 1%),
+        hsl(221, 100%, 5%) 50%,
+        hsl(226, 100%, 10%),
+        hsl(207, 40%, 15%)
+      );
+    }
+
     .nav {
       position: absolute;
       margin: 1rem;
@@ -20,7 +31,7 @@
       background-color: transparent;
       border: none;
       color: white;
-      transition: transform 0.5s;
+      transition: transform 0.5s, opacity 0.5s;
     }
 
     .nav:hover {
@@ -31,7 +42,7 @@
       transform: rotate(180deg);
       background-image: linear-gradient(
         hsla(24, 74%, 79%, 0.3),
-        hsla(290, 70%, 50%, 0.3)
+        hsla(229, 70%, 50%, 0.3)
       );
     }
 
@@ -42,13 +53,18 @@
     .next {
       right: 0;
       background-image: linear-gradient(
-        hsla(290, 70%, 50%, 0.3),
+        hsla(229, 70%, 50%, 0.3),
         hsla(24, 74%, 79%, 0.3)
       );
     }
 
     .next:hover {
       transform: translateY(-7px) scale(1.2);
+    }
+
+    .hide {
+      opacity: 0;
+      pointer-events: none;
     }
   </style>
 </html>

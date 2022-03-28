@@ -1,0 +1,11 @@
+Model Information:
+* title:	Network 0001
+* source:	https://sketchfab.com/3d-models/network-0001-4daf2ae9766c4da994b2299e3e479eeb
+* author:	davideformentiarranz (https://sketchfab.com/davideformentiarranz)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Network 0001" (https://sketchfab.com/3d-models/network-0001-4daf2ae9766c4da994b2299e3e479eeb) by davideformentiarranz (https://sketchfab.com/davideformentiarranz) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

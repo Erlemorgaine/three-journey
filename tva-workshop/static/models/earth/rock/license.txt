@@ -1,0 +1,11 @@
+Model Information:
+* title:	Rock Stone 14 .::RAWscan::.
+* source:	https://sketchfab.com/3d-models/rock-stone-14-rawscan-3b8de09bc6344f46a493d86e4e4d9678
+* author:	Andrea Spognetta (Spogna) (https://sketchfab.com/spogna)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Rock Stone 14 .::RAWscan::." (https://sketchfab.com/3d-models/rock-stone-14-rawscan-3b8de09bc6344f46a493d86e4e4d9678) by Andrea Spognetta (Spogna) (https://sketchfab.com/spogna) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

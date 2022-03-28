@@ -15,65 +15,13 @@ import { slide5 } from "./slide-5";
  * Base
  */
 // Debug
-const gui = new dat.GUI();
+// const gui = new dat.GUI();
 
 // Canvas
 const canvas = document.querySelector("canvas.webgl");
 
 // Scene
 const scene = new THREE.Scene();
-
-const disposeOfObjects = () => {
-  scene.children.forEach((child) => {
-    if (child.material) child.material.dispose();
-    if (child.geometry) child.geometry.dispose();
-
-    scene.remove(child);
-  });
-};
-
-/**
- * Textures
- */
-const textureLoader = new THREE.TextureLoader();
-
-/**
- * Slides
- */
-const slides = [slide1, slide2, slide3, slide4, slide5];
-
-/**
- * Navigation
- */
-const prevBtn = document.getElementById("prev");
-const nextBtn = document.getElementById("next");
-
-let currentSlideIndex = 0;
-
-const navigate = () => {
-  if (currentSlideIndex === 0) {
-    prevBtn.style.display = "none";
-  } else if (currentSlideIndex === slides.length - 1) {
-    nextBtn.style.display = "none";
-  } else {
-    prevBtn.style.display = "initial";
-    nextBtn.style.display = "initial";
-  }
-
-  disposeOfObjects();
-  slides[currentSlideIndex](scene, textureLoader);
-};
-
-prevBtn.addEventListener("click", () => {
-  currentSlideIndex++;
-  navigate();
-});
-nextBtn.addEventListener("click", () => {
-  currentSlideIndex++;
-  navigate();
-});
-
-navigate();
 
 /**
  * Sizes
@@ -102,14 +50,15 @@ window.addEventListener("resize", () => {
  */
 // Base camera
 const camera = new THREE.PerspectiveCamera(
-  75,
+  45,
   sizes.width / sizes.height,
   0.1,
   100
 );
 camera.position.x = 1;
 camera.position.y = 1;
-camera.position.z = 2;
+camera.position.z = 4;
+
 scene.add(camera);
 
 // Controls
@@ -121,26 +70,61 @@ controls.enableDamping = true;
  */
 const renderer = new THREE.WebGLRenderer({
   canvas: canvas,
+  alpha: true,
 });
 renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-/**
- * Animate
- */
-const clock = new THREE.Clock();
+const disposeOfObjects = () => {
+  [...scene.children].forEach((child) => {
+    if (child.material) child.material.dispose();
+    if (child.geometry) child.geometry.dispose();
 
-const tick = () => {
-  const elapsedTime = clock.getElapsedTime();
-
-  // Update controls
-  controls.update();
-
-  // Render
-  renderer.render(scene, camera);
-
-  // Call tick again on the next frame
-  window.requestAnimationFrame(tick);
+    scene.remove(child);
+  });
 };
 
-tick();
+/**
+ * Textures
+ */
+const textureLoader = new THREE.TextureLoader();
+
+/**
+ * Slides
+ */
+const slides = [slide1, slide2, slide3, slide4, slide5];
+
+/**
+ * Navigation
+ */
+const prevBtn = document.getElementById("prev");
+const nextBtn = document.getElementById("next");
+
+let currentSlideIndex = 0;
+
+const navigate = () => {
+  if (currentSlideIndex === 0) {
+    prevBtn.classList.add("hide");
+  } else if (currentSlideIndex === slides.length - 1) {
+    nextBtn.classList.add("hide");
+  } else {
+    prevBtn.classList.remove("hide");
+    nextBtn.classList.remove("hide");
+  }
+
+  disposeOfObjects();
+  controls.reset();
+  slides[currentSlideIndex](scene, textureLoader, camera, controls, renderer);
+};
+
+prevBtn.addEventListener("click", () => {
+  currentSlideIndex--;
+  navigate();
+});
+nextBtn.addEventListener("click", () => {
+  currentSlideIndex++;
+  navigate();
+});
+
+navigate();
+

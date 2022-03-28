@@ -3,8 +3,9 @@ import * as THREE from "three";
 import { FontLoader } from "three/examples/jsm/loaders/FontLoader.js";
 import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry.js";
 
-export const slide1 = (scene, textureLoader) => {
-  const matcapTexture = textureLoader.load("/textures/matcaps/8.png");
+// 1, 2, 3, 5, 10
+export const slide1 = (scene, textureLoader, camera, controls, renderer) => {
+  const matcapTexture = textureLoader.load("/textures/matcaps/1.jpeg");
 
   /**
    * Fonts
@@ -30,15 +31,6 @@ export const slide1 = (scene, textureLoader) => {
     // The bounding box consists of a min and max value (both Vector3), that, when
     // subtracted against each other, return the widht, height and depth of the box
     textGeometry.computeBoundingBox();
-    // We only move the geometry, not the mesh, so that mesh will rotate on its center
-    // In BufferGeometry, we can use translate
-    //   textGeometry.translate(
-    //     (textGeometry.boundingBox.max.x - bevelSize) * -0.5,
-    //     (textGeometry.boundingBox.max.y - bevelSize) * -0.5,
-    //     (textGeometry.boundingBox.max.z - bevelThickness) * -0.5
-    //   );
-    // But now it's not exactly in the center. This is becayse we have a bevel size of 0.02,
-    // so the boundingBox doesn't start at 0, 0, 0
 
     // .... But... we can also use the center method of BufferGeometry
     textGeometry.center();
@@ -54,7 +46,8 @@ export const slide1 = (scene, textureLoader) => {
   /**
    * Textures
    */
-  const particleTexture = textureLoader.load("/textures/particles/6.png");
+  // 2, 8
+  const particleTexture = textureLoader.load("/textures/particles/2.png");
 
   /**
    * Particle setup
@@ -121,4 +114,22 @@ export const slide1 = (scene, textureLoader) => {
   // Points
   const particles = new THREE.Points(particleGeometry, particlesMaterial);
   scene.add(particles);
+
+  /**
+   * Animate
+   */
+  const clock = new THREE.Clock();
+
+  const tick = () => {
+    // Update controls
+    controls.update();
+
+    // Render
+    renderer.render(scene, camera);
+
+    // Call tick again on the next frame
+    window.requestAnimationFrame(tick);
+  };
+
+  tick();
 };
