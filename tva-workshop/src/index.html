@@ -7,6 +7,71 @@
   </head>
   <body>
     <canvas class="webgl"></canvas>
+
+    <div id="slide-1" class="content hide slide-1">
+      <p class="p-1">
+        We learned a lot from Eni Fusione, Cielo Terra Mare,<br />using the
+        Three.js documentation....
+      </p>
+      <img class="" src="../static/bruno.jpeg" alt="" />
+      <p class="p-2">... and afterwards we learned a lot more from Bruno!</p>
+    </div>
+    <div id="slide-2" class="content hide slide-2">
+      <h1>SHAPES</h1>
+      <p class="p-1">We can easily make <em>simple shapes</em>, such as:</p>
+      <ul>
+        <li>Cube</li>
+        <li>Sphere</li>
+        <li>Cone</li>
+        <li>Torus</li>
+        <li>Plane</li>
+      </ul>
+      <p class="p-2">
+        Complex shapes (with lots of curves) are a bit more complex,<br />since
+        we have to do the math ourselves or hope that<br />
+        someone on the internet did the math for us
+      </p>
+    </div>
+    <div id="slide-3" class="content hide slide-3">
+      <h1>Models</h1>
+      <p class="p-1">
+        ...Or, like in CTM, we can load models (preferably GLTF)<br />
+        into the 3D scene.
+      </p>
+      <p class="p-2">
+        3D objects are made up of <em>triangles</em>.<br />The more triangles,
+        the less <em>performant</em> a model is.
+      </p>
+
+      <p class="p-3">
+        We can optimise the models by reducing the number of triangles, but this
+        will make curved surfaces look less smooth.
+      </p>
+      <p class="p-4">
+        So:
+        <strong>models with many smooth curves are not so performant</strong>
+      </p>
+    </div>
+    <div id="slide-4" class="content hide slide-4">
+      <p class="p-1">
+        You can do a lot of cool stuff with <em>shadows</em> and
+        <em>lights</em>...
+      </p>
+      <h1>
+        Lights<br />
+        & shadows
+      </h1>
+      <p class="p-2">
+        But, again:<br />
+        <strong>it's not performant</strong> <br />if you cast shadows
+        everywhere and use a lot of lights
+      </p>
+    </div>
+    <div id="slide-5" class="content hide slide-5"></div>
+    <div id="slide-6" class="content hide slide-6"></div>
+    <div id="slide-7" class="content hide slide-7"></div>
+    <div id="slide-8" class="content hide slide-8"></div>
+
     <button id="prev" class="nav previous">➜</button>
     <button id="next" class="nav next">➜</button>
   </body>
@@ -20,6 +85,9 @@
         hsl(226, 100%, 10%),
         hsl(207, 40%, 15%)
       );
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 1.5rem;
+      line-height: 150%;
     }
 
     .nav {
@@ -65,6 +133,137 @@
     .hide {
       opacity: 0;
       pointer-events: none;
+    }
+
+    .content {
+      color: white;
+      position: absolute;
+      width: 100%;
+      height: 100vh;
+      pointer-events: none;
+    }
+
+    .slide-1 {
+      top: 0;
+      left: 0;
+    }
+
+    .slide-1 .p-1 {
+      position: absolute;
+      top: 8rem;
+      left: 8rem;
+    }
+
+    .slide-1 img {
+      position: absolute;
+      width: 300px;
+      aspect-ratio: 1;
+      top: 50%;
+      left: 45%;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+      border-radius: 20px;
+      mix-blend-mode: screen;
+    }
+
+    /* .slide-1 img::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+      top: -2rem;
+      left: -2rem;
+      border: 1px solid white;
+    } */
+
+    .slide-1 .p-2 {
+      position: absolute;
+      bottom: 8rem;
+      right: 8rem;
+    }
+
+    .slide-2 {
+      left: 50%;
+      top: 5rem;
+    }
+
+    .slide-2 ul {
+      margin: 4rem 0;
+      list-style-type: none;
+    }
+
+    .slide-2 ul li {
+      margin-bottom: 2rem;
+      margin-left: 5rem;
+    }
+
+    .slide-3 {
+      left: 50%;
+      top: 5rem;
+    }
+
+    .slide-3 .p-2 {
+      transform: translateY(4rem);
+    }
+
+    .slide-3 .p-3,
+    .slide-3 .p-4 {
+      transform: translateY(6rem);
+      position: relative;
+      left: 7rem;
+      width: 27rem;
+    }
+
+    .slide-3 .p-4 {
+      transform: translateY(8rem);
+      left: 16rem;
+      width: 22rem;
+    }
+
+    .slide-4 {
+      background-image: linear-gradient(
+        90deg,
+        transparent 50%,
+        hsl(221, 100%, 3%) 90%
+      );
+    }
+
+    .slide-4 .p-1,
+    .slide-4 .p-2,
+    .slide-4 h1 {
+      position: absolute;
+      right: 5rem;
+      text-align: end;
+      width: 22rem;
+    }
+
+    .slide-4 .p-1 {
+      top: 5rem;
+    }
+
+    .slide-4 .p-2 {
+      bottom: 5rem;
+    }
+
+    .slide-4 h1 {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    h1,
+    h2 {
+      font-family: "Courier New", Courier, monospace;
+      margin-bottom: 2rem;
+    }
+
+    em {
+      color: hsla(39, 100%, 82%, 0.8);
+    }
+
+    strong {
+      color: rgb(202, 141, 0);
+      font-weight: normal;
     }
   </style>
 </html>

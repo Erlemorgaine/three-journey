@@ -16,6 +16,17 @@ import * as THREE from "three";
  * @param {*} textureLoader
  */
 export const slide3 = (scene, textureLoader, camera, controls, renderer) => {
+  const ambientLight = new THREE.AmbientLight("hsl(290, 0%,70%)", 0.8);
+  scene.add(ambientLight);
+
+  const directionalLight = new THREE.DirectionalLight(
+    "hsl(221, 100%, 75%)",
+    0.6
+  );
+
+  directionalLight.position.set(1, 2, 3);
+  scene.add(directionalLight);
+
   const particleTexture = textureLoader.load("/textures/particles/6.png");
 
   /**
@@ -92,6 +103,44 @@ export const slide3 = (scene, textureLoader, camera, controls, renderer) => {
   particles.position.set(-2, 0, 0);
   particles.rotation.x = Math.PI * -0.05;
   scene.add(particles);
+
+  const cube = new THREE.Mesh(
+    new THREE.BoxGeometry(0.13, 0.13, 0.13),
+    new THREE.MeshStandardMaterial()
+  );
+  cube.position.y = 0.6;
+  scene.add(cube);
+
+  const sphere = new THREE.Mesh(
+    new THREE.SphereGeometry(0.08, 16, 16),
+    new THREE.MeshStandardMaterial()
+  );
+  sphere.position.y = 0.32;
+  scene.add(sphere);
+
+  const cone = new THREE.Mesh(
+    new THREE.ConeBufferGeometry(0.1, 0.15, 32),
+    new THREE.MeshStandardMaterial()
+  );
+  cone.position.y = 0.05;
+
+  scene.add(cone);
+
+  const torus = new THREE.Mesh(
+    new THREE.TorusBufferGeometry(0.07, 0.03, 16, 32),
+    new THREE.MeshStandardMaterial()
+  );
+  torus.position.y = -0.28;
+
+  scene.add(torus);
+
+  const plane = new THREE.Mesh(
+    new THREE.PlaneGeometry(0.15, 0.15),
+    new THREE.MeshStandardMaterial()
+  );
+  plane.position.y = -0.6;
+
+  scene.add(plane);
 
   const clock = new THREE.Clock();
 

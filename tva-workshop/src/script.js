@@ -10,6 +10,9 @@ import { slide2 } from "./slide-2";
 import { slide3 } from "./slide-3";
 import { slide4 } from "./slide-4";
 import { slide5 } from "./slide-5";
+import { slide6 } from "./slide-6";
+import { slide7 } from "./slide-7";
+import { slide8 } from "./slide-8";
 
 /**
  * Base
@@ -92,7 +95,7 @@ const textureLoader = new THREE.TextureLoader();
 /**
  * Slides
  */
-const slides = [slide1, slide2, slide3, slide4, slide5];
+const slides = [slide1, slide2, slide3, slide4, slide5, slide6, slide7, slide8];
 
 /**
  * Navigation
@@ -100,16 +103,39 @@ const slides = [slide1, slide2, slide3, slide4, slide5];
 const prevBtn = document.getElementById("prev");
 const nextBtn = document.getElementById("next");
 
-let currentSlideIndex = 0;
+let currentSlideIndex = 2;
 
 const navigate = () => {
   if (currentSlideIndex === 0) {
     prevBtn.classList.add("hide");
+
+    document
+      .getElementById("slide-" + (currentSlideIndex + 1))
+      .classList.add("hide");
   } else if (currentSlideIndex === slides.length - 1) {
     nextBtn.classList.add("hide");
+    document
+      .getElementById("slide-" + (currentSlideIndex - 1))
+      .classList.add("hide");
   } else {
     prevBtn.classList.remove("hide");
     nextBtn.classList.remove("hide");
+
+    if (currentSlideIndex !== 1) {
+      document
+        .getElementById("slide-" + (currentSlideIndex - 1))
+        .classList.add("hide");
+    }
+
+    document
+      .getElementById("slide-" + (currentSlideIndex + 1))
+      .classList.add("hide");
+  }
+
+  if (currentSlideIndex !== 0) {
+    document
+      .getElementById("slide-" + currentSlideIndex)
+      .classList.remove("hide");
   }
 
   disposeOfObjects();
@@ -127,4 +153,3 @@ nextBtn.addEventListener("click", () => {
 });
 
 navigate();
-

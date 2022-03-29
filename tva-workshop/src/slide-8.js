@@ -12,4 +12,4 @@ import * as THREE from "three";
  * @param {*} scene
  * @param {*} textureLoader
  */
-export const slide6 = (scene, textureLoader) => {};
+export const slide8 = (scene, textureLoader) => {};

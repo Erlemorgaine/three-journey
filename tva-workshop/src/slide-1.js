@@ -5,6 +5,11 @@ import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry.js";
 
 // 1, 2, 3, 5, 10
 export const slide1 = (scene, textureLoader, camera, controls, renderer) => {
+  /**
+   * HTML
+   */
+  document.getElementById
+
   const matcapTexture = textureLoader.load("/textures/matcaps/1.jpeg");
 
   /**
