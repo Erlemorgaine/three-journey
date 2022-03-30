@@ -60,4 +60,24 @@ export const slide4 = (scene, textureLoader, camera, controls, renderer) => {
 
     scene.add(object);
   });
+
+  /**
+   * Animate
+   */
+  const clock = new THREE.Clock();
+
+  const tick = () => {
+    // Update controls
+    controls.update();
+
+    
+
+    // Render
+    renderer.render(scene, camera);
+
+    // Call tick again on the next frame
+    window.requestAnimationFrame(tick);
+  };
+
+  tick();
 };

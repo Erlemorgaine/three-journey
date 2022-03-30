@@ -16,4 +16,4 @@ import * as THREE from "three";
  * @param {*} scene
  * @param {*} textureLoader
  */
-export const slide7 = (scene, textureLoader) => {};
+export const slide7 = (scene, textureLoader, camera, controls, renderer) => {};
