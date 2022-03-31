@@ -90,7 +90,7 @@
       <p class="p-1">
         There are three ways to go about using text in Three.js:
         <ol>
-          <li>Using built-in <em>3D text object</em><br><p>... but you can only show plain text<br> and every line should look the same </p></li>
+          <li>Using built-in <em>3D text object</em><br><p>... but you can only show plain text<br> and every line should look the same. <br>Also there can be <strong>weird effects</strong> with non-standard characters<br> (like CO<sub>2</sub> 🤯 )</p></li>
           <li>Using built-in <em>3D HTML objects and renderer</em> <br><p>... but we don't really have experience with this (yet)</p></li>
           <li><em>Translating</em> 3D coordinates <em>to HTML</em> <br><p>... but positioning the text can become very difficult<br>when you're also rotating / zooming,<br>and text can not go behind the 3D objects</p></li>
           
@@ -310,6 +310,10 @@
       /* margin-left: 1rem; */
       padding-left: 1.5rem;
       border-left: 2px solid rgb(202, 141, 0);
+    }
+
+    .slide-7 ol li p sub {
+      font-size: 0.8rem;
     }
 
     h1,
