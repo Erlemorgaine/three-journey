@@ -110,31 +110,29 @@ const navigate = () => {
     prevBtn.classList.add("hide");
 
     document
-      .getElementById("slide-" + (currentSlideIndex + 1))
+      .getElementById("slide-" + (currentSlideIndex + 2))
       .classList.add("hide");
   } else if (currentSlideIndex === slides.length - 1) {
     nextBtn.classList.add("hide");
-    document
-      .getElementById("slide-" + (currentSlideIndex - 1))
-      .classList.add("hide");
+    document.getElementById("slide-" + currentSlideIndex).classList.add("hide");
   } else {
     prevBtn.classList.remove("hide");
     nextBtn.classList.remove("hide");
 
     if (currentSlideIndex !== 1) {
       document
-        .getElementById("slide-" + (currentSlideIndex - 1))
+        .getElementById("slide-" + currentSlideIndex)
         .classList.add("hide");
     }
 
     document
-      .getElementById("slide-" + (currentSlideIndex + 1))
+      .getElementById("slide-" + (currentSlideIndex + 2))
       .classList.add("hide");
   }
 
   if (currentSlideIndex !== 0) {
     document
-      .getElementById("slide-" + currentSlideIndex)
+      .getElementById("slide-" + (currentSlideIndex + 1))
       .classList.remove("hide");
   }
 

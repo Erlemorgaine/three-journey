@@ -53,6 +53,7 @@ export const slide6 = (scene, textureLoader, camera, controls, renderer) => {
     new THREE.MeshBasicMaterial({
       transparent: true,
       alphaMap: particleTexture,
+      side: THREE.DoubleSide,
     })
   );
 

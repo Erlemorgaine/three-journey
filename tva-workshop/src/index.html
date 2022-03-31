@@ -8,7 +8,7 @@
   <body>
     <canvas class="webgl"></canvas>
 
-    <div id="slide-1" class="content hide slide-1">
+    <div id="slide-2" class="content hide slide-2">
       <p class="p-1">
         We learned a lot from Eni Fusione, Cielo Terra Mare,<br />using the
         Three.js documentation....
@@ -16,7 +16,7 @@
       <img class="" src="../static/bruno.jpeg" alt="" />
       <p class="p-2">... and afterwards we learned a lot more from Bruno!</p>
     </div>
-    <div id="slide-2" class="content hide slide-2">
+    <div id="slide-3" class="content hide slide-3">
       <h1>SHAPES</h1>
       <p class="p-1">We can easily make <em>simple shapes</em>, such as:</p>
       <ul>
@@ -32,7 +32,7 @@
         someone on the internet did the math for us
       </p>
     </div>
-    <div id="slide-3" class="content hide slide-3">
+    <div id="slide-4" class="content hide slide-4">
       <h1>Models</h1>
       <p class="p-1">
         ...Or, like in CTM, we can load models (preferably GLTF)<br />
@@ -52,7 +52,7 @@
         <strong>models with many smooth curves are not so performant</strong>
       </p>
     </div>
-    <div id="slide-4" class="content hide slide-4">
+    <div id="slide-5" class="content hide slide-5">
       <p class="p-1">
         You can do a lot of cool stuff with <em>shadows</em> and
         <em>lights</em>...
@@ -67,10 +67,26 @@
         everywhere and use a lot of lights
       </p>
     </div>
-    <div id="slide-5" class="content hide slide-5"></div>
-    <div id="slide-6" class="content hide slide-6"></div>
+    <div id="slide-6" class="content hide slide-6">
+      <h1>Interactivity</h1>
+      <p class="p-1">
+        You can quite easily make the camera of a scene <em>zoom</em>,
+        <em>rotate</em> and <em>pan</em> (on mobile).
+      </p>
+      <p class="p-2">
+        Also, doing things on <em>hover</em> and <em>click</em> and
+        <em>following the mouse</em> is fairly easy.
+      </p>
+      <p class="p-3">
+        But interacting with an object becomes
+        <strong>very heavy for performance</strong> when having a lot of
+        <em>overlapping objects</em> in the scene, especially objects with a lot
+        of <em>triangles</em> (like the cloud). The screen will freeze!
+      </p>
+    </div>
     <div id="slide-7" class="content hide slide-7"></div>
     <div id="slide-8" class="content hide slide-8"></div>
+    <div id="slide-9" class="content hide slide-9"></div>
 
     <button id="prev" class="nav previous">➜</button>
     <button id="next" class="nav next">➜</button>
@@ -143,18 +159,18 @@
       pointer-events: none;
     }
 
-    .slide-1 {
+    .slide-2 {
       top: 0;
       left: 0;
     }
 
-    .slide-1 .p-1 {
+    .slide-2 .p-1 {
       position: absolute;
       top: 8rem;
       left: 8rem;
     }
 
-    .slide-1 img {
+    .slide-2 img {
       position: absolute;
       width: 300px;
       aspect-ratio: 1;
@@ -166,7 +182,7 @@
       mix-blend-mode: screen;
     }
 
-    /* .slide-1 img::after {
+    /* .slide-2 img::after {
       content: "";
       position: absolute;
       width: 100%;
@@ -177,25 +193,10 @@
       border: 1px solid white;
     } */
 
-    .slide-1 .p-2 {
+    .slide-2 .p-2 {
       position: absolute;
       bottom: 8rem;
       right: 8rem;
-    }
-
-    .slide-2 {
-      left: 50%;
-      top: 5rem;
-    }
-
-    .slide-2 ul {
-      margin: 4rem 0;
-      list-style-type: none;
-    }
-
-    .slide-2 ul li {
-      margin-bottom: 2rem;
-      margin-left: 5rem;
     }
 
     .slide-3 {
@@ -203,25 +204,40 @@
       top: 5rem;
     }
 
-    .slide-3 .p-2 {
+    .slide-3 ul {
+      margin: 4rem 0;
+      list-style-type: none;
+    }
+
+    .slide-3 ul li {
+      margin-bottom: 2rem;
+      margin-left: 5rem;
+    }
+
+    .slide-4 {
+      left: 50%;
+      top: 5rem;
+    }
+
+    .slide-4 .p-2 {
       transform: translateY(4rem);
     }
 
-    .slide-3 .p-3,
-    .slide-3 .p-4 {
+    .slide-4 .p-3,
+    .slide-4 .p-4 {
       transform: translateY(6rem);
       position: relative;
       left: 7rem;
       width: 27rem;
     }
 
-    .slide-3 .p-4 {
+    .slide-4 .p-4 {
       transform: translateY(8rem);
       left: 16rem;
       width: 22rem;
     }
 
-    .slide-4 {
+    .slide-5 {
       background-image: linear-gradient(
         90deg,
         transparent 50%,
@@ -229,26 +245,40 @@
       );
     }
 
-    .slide-4 .p-1,
-    .slide-4 .p-2,
-    .slide-4 h1 {
+    .slide-5 .p-1,
+    .slide-5 .p-2,
+    .slide-5 h1 {
       position: absolute;
       right: 5rem;
       text-align: end;
       width: 22rem;
     }
 
-    .slide-4 .p-1 {
+    .slide-5 .p-1 {
       top: 5rem;
     }
 
-    .slide-4 .p-2 {
+    .slide-5 .p-2 {
       bottom: 5rem;
     }
 
-    .slide-4 h1 {
+    .slide-5 h1 {
       top: 50%;
       transform: translateY(-50%);
+    }
+
+    .slide-6 {
+      text-align: center;
+    }
+
+    .slide-6 h1 {
+      margin-top: 4rem;
+    }
+
+    .slide-6 .p-3 {
+      margin: 0 auto;
+      margin-top: 50vh;
+      max-width: 800px;
     }
 
     h1,
