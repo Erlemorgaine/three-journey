@@ -71,7 +71,7 @@
       <h1>Interactivity</h1>
       <p class="p-1">
         You can quite easily make the camera of a scene <em>zoom</em>,
-        <em>rotate</em> and <em>pan</em> (on mobile).
+        <em>rotate</em> and <em>pan</em> (on mobile or with two fingers).
       </p>
       <p class="p-2">
         Also, doing things on <em>hover</em> and <em>click</em> and
@@ -96,6 +96,9 @@
           
         </ol>
       </p>
+
+      <p class="p-2"><em>But something like <strong>this</strong></em>, with
+      different <span class="bold">styles</span>,<br> clickable <a href="">links</a> or <span class="underline">underlined text</span> in one line,<br> as well as a text box with drop shadow, <br>is difficult to do for now.</p>
     </div>
     <div id="slide-8" class="content hide slide-8"></div>
     <div id="slide-9" class="content hide slide-9"></div>
@@ -314,6 +317,29 @@
 
     .slide-7 ol li p sub {
       font-size: 0.8rem;
+    }
+
+    .slide-7 .p-2 {
+      position: absolute;
+      right: 8rem;
+      transform: translateY(-100%);
+      padding: 1rem 2rem;
+      border-radius: 20px;
+      background: linear-gradient(hsla(210, 0%, 70%, 0.1), hsla(210, 50%, 20%, 0.8));
+      box-shadow: -4px 2px 12px 10px hsla(210, 0%, 70%, 0.1);
+    }
+
+    .slide-7 .p-2 .underline {
+      text-decoration: underline;
+    }
+
+     .slide-7 .p-2 .bold {
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    }
+
+    .slide-7 .p-2 a {
+      color: white;
+      opacity: 0.5;
     }
 
     h1,
