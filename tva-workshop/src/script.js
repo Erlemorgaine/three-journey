@@ -13,6 +13,7 @@ import { slide5 } from "./slide-5";
 import { slide6 } from "./slide-6";
 import { slide7 } from "./slide-7";
 import { slide8 } from "./slide-8";
+import { slide9 } from "./slide-9";
 
 /**
  * Base
@@ -96,7 +97,17 @@ const textureLoader = new THREE.TextureLoader();
 /**
  * Slides
  */
-const slides = [slide1, slide2, slide3, slide4, slide5, slide6, slide7, slide8];
+const slides = [
+  slide1,
+  slide2,
+  slide3,
+  slide4,
+  slide5,
+  slide6,
+  slide7,
+  slide8,
+  slide9,
+];
 
 /**
  * Navigation
@@ -104,7 +115,7 @@ const slides = [slide1, slide2, slide3, slide4, slide5, slide6, slide7, slide8];
 const prevBtn = document.getElementById("prev");
 const nextBtn = document.getElementById("next");
 
-let currentSlideIndex = 7;
+let currentSlideIndex = 8;
 
 const navigate = () => {
   if (currentSlideIndex === 0) {
