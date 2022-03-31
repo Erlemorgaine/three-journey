@@ -77,6 +77,7 @@ const renderer = new THREE.WebGLRenderer({
 });
 renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+// renderer.autoClear = false;
 
 const disposeOfObjects = () => {
   [...scene.children].forEach((child) => {
@@ -103,7 +104,7 @@ const slides = [slide1, slide2, slide3, slide4, slide5, slide6, slide7, slide8];
 const prevBtn = document.getElementById("prev");
 const nextBtn = document.getElementById("next");
 
-let currentSlideIndex = 6;
+let currentSlideIndex = 7;
 
 const navigate = () => {
   if (currentSlideIndex === 0) {

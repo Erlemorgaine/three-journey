@@ -100,7 +100,13 @@
       <p class="p-2"><em>But something like <strong>this</strong></em>, with
       different <span class="bold">styles</span>,<br> clickable <a href="">links</a> or <span class="underline">underlined text</span> in one line,<br> as well as a text box with drop shadow, <br>is difficult to do for now.</p>
     </div>
-    <div id="slide-8" class="content hide slide-8"></div>
+    <div id="slide-8" class="content hide slide-8">
+      <p class="p-1">There are two solutions for creating glow: <strong>post-processing</strong>, and using <strong>shaders</strong>.</p>
+      <p class="p-2"><em>Post-processing (shown here):</em><br>
+       Applied to the whole scene, difficult to make it work <br> when glowing and non-glowing objects are overlapping </p>
+      <p class="p-3"><em>Shaders (used in CTM):</em><br> Colors are more customisable, but problems with <br> rotating glowing objects and keeping edges soft</p>
+      
+    </div>
     <div id="slide-9" class="content hide slide-9"></div>
 
     <button id="prev" class="nav previous">➜</button>
@@ -340,6 +346,15 @@
     .slide-7 .p-2 a {
       color: white;
       opacity: 0.5;
+    }
+
+    .slide-8 {
+      text-align: center;
+      top: 50vh;
+    }
+
+    .slide-8 p {
+      margin-bottom: 2rem;
     }
 
     h1,

@@ -21,7 +21,7 @@ import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry.js";
  */
 export const slide7 = (scene, textureLoader, camera, controls, renderer) => {
   const matcapTexture1 = textureLoader.load("/textures/matcaps/2.jpeg");
-  const matcapTexture2 = textureLoader.load("/textures/matcaps/4.jpeg");
+  const matcapTexture2 = textureLoader.load("/textures/matcaps/6.jpeg");
   const matcapTexture3 = textureLoader.load("/textures/matcaps/5.jpeg");
 
   /**
