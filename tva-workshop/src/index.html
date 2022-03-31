@@ -84,7 +84,19 @@
         of <em>triangles</em> (like the cloud). The screen will freeze!
       </p>
     </div>
-    <div id="slide-7" class="content hide slide-7"></div>
+    <div id="slide-7" class="content hide slide-7">
+      <h1>Text</h1>
+
+      <p class="p-1">
+        There are three ways to go about using text in Three.js:
+        <ol>
+          <li>Using built-in <em>3D text object</em><br><p>... but you can only show plain text<br> and every line should look the same </p></li>
+          <li>Using built-in <em>3D HTML objects and renderer</em> <br><p>... but we don't really have experience with this (yet)</p></li>
+          <li><em>Translating</em> 3D coordinates <em>to HTML</em> <br><p>... but positioning the text can become very difficult<br>when you're also rotating / zooming,<br>and text can not go behind the 3D objects</p></li>
+          
+        </ol>
+      </p>
+    </div>
     <div id="slide-8" class="content hide slide-8"></div>
     <div id="slide-9" class="content hide slide-9"></div>
 
@@ -279,6 +291,25 @@
       margin: 0 auto;
       margin-top: 50vh;
       max-width: 800px;
+    }
+
+    .slide-7 {
+      margin: 4rem;
+    }
+
+    .slide-7 ol {
+      margin-top: 2rem;
+    }
+
+    .slide-7 ol li {
+      margin-top: 2rem;
+    }
+
+    .slide-7 ol li p {
+      margin-top: 0.5rem;
+      /* margin-left: 1rem; */
+      padding-left: 1.5rem;
+      border-left: 2px solid rgb(202, 141, 0);
     }
 
     h1,

@@ -103,7 +103,7 @@ const slides = [slide1, slide2, slide3, slide4, slide5, slide6, slide7, slide8];
 const prevBtn = document.getElementById("prev");
 const nextBtn = document.getElementById("next");
 
-let currentSlideIndex = 5;
+let currentSlideIndex = 6;
 
 const navigate = () => {
   if (currentSlideIndex === 0) {
