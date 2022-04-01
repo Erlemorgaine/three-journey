@@ -107,7 +107,14 @@
       <p class="p-3"><em>Shaders (used in CTM):</em><br> Colors are more customisable, but problems with <br> rotating glowing objects and keeping edges soft</p>
       
     </div>
-    <div id="slide-9" class="content hide slide-9"></div>
+    <div id="slide-9" class="content hide slide-9">
+      <h1>Resources</h1>
+      <p><a href="https://bruno-simon.com/">Bruno Simon's Portfolio</a>, with low poly models</p>
+      <p><a href="https://sketchfab.com/" target="_blank">Sketchfab</a>, for models</p>
+      <p><a href="https://threejs.org/" target="_blank">Three.js</a>, for inspiration (check also the examples page)</p>
+      <p><a href="https://threejs.org/docs/#api/en/geometries/BoxGeometry" target="_blank">Three.js docs</a>, for shapes, lights, materials etc.</p>
+
+    </div>
 
     <button id="prev" class="nav previous">➜</button>
     <button id="next" class="nav next">➜</button>
@@ -355,6 +362,33 @@
 
     .slide-8 p {
       margin-bottom: 2rem;
+    }
+
+    .slide-9 {
+      position: fixed;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding-bottom: 4rem;
+      z-index: 5;
+      pointer-events: initial;
+      height: fit-content;
+      top: calc(100% + 3rem);
+      transform: translateY(-100%);
+    }
+
+    .slide-9 a {
+      color: hsla(39, 100%, 82%, 0.8);
+      
+    }
+
+     .slide-9 > * {
+      margin-left: 4rem;
+    }
+
+    .slide-9 > *:last-child {
+      margin-bottom: 6rem;
+      
     }
 
     h1,

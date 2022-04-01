@@ -115,7 +115,7 @@ const slides = [
 const prevBtn = document.getElementById("prev");
 const nextBtn = document.getElementById("next");
 
-let currentSlideIndex = 0;
+let currentSlideIndex = 8;
 
 const navigate = () => {
   if (currentSlideIndex === 0) {
