@@ -35,7 +35,7 @@
     <div id="slide-4" class="content hide slide-4">
       <h1>Models</h1>
       <p class="p-1">
-        ...Or, like in CTM, we can load models (preferably GLTF)<br />
+        ...Or, like in CTM, we can load models <br />(preferably GLTF / GLB / FBX)
         into the 3D scene.
       </p>
       <p class="p-2">
@@ -111,6 +111,9 @@
       <h1>Resources</h1>
       <p><a href="https://bruno-simon.com/">Bruno Simon's Portfolio</a>, with low poly models</p>
       <p><a href="https://sketchfab.com/" target="_blank">Sketchfab</a>, for models</p>
+      <p><a href="https://www.turbosquid.com/" target="_blank">Turbosquid</a>, also for models</p>
+
+
       <p><a href="https://threejs.org/" target="_blank">Three.js</a>, for inspiration (check also the examples page)</p>
       <p><a href="https://threejs.org/docs/#api/en/geometries/BoxGeometry" target="_blank">Three.js docs</a>, for shapes, lights, materials etc.</p>
 
@@ -174,10 +177,6 @@
       transform: translateY(-7px) scale(1.2);
     }
 
-    .hide {
-      opacity: 0;
-      pointer-events: none;
-    }
 
     .content {
       color: white;
@@ -389,6 +388,12 @@
     .slide-9 > *:last-child {
       margin-bottom: 6rem;
       
+    }
+
+
+    .hide {
+      opacity: 0;
+      pointer-events: none;
     }
 
     h1,
