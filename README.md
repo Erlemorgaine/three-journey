@@ -63,7 +63,7 @@ _MeshLambertMaterial_: Most simple material that has to do with light. It can ha
 
 _MeshPhongMaterial_: Very similar to Lambert, but the blurry lines are gone, and more strong light reflection
 
-_MeshStandardMaterial_: Supports light the best, met useful params like metalness and roughness. It uses PBR.
+_MeshStandardMaterial_: Supports light the best, with useful params like metalness and roughness. It uses PBR.
 
 _MeshPhysicalMaterial_: Is same as _MeshStandardMaterial_, but with a clear coat effect (above object). This makes it more realistic, depending on what you want to do. But it's less performant than _MeshStandardMaterial_.
 

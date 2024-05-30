@@ -93,6 +93,7 @@ export const slide1 = (scene, textureLoader, camera, controls, renderer) => {
     vertexColors: true, // Indicates the colors in the geometry attributes should be used
     alphaMap: particleTexture,
     transparent: true,
+
     // This makes sure that pixels that are transparent (0, its default value) are not rendered
     // Fixes the bug that when a pixel is transparent but on top of the pixel of another
     // object that is drawn later, it will not show the pixel of the other object

@@ -76,7 +76,7 @@ fontLoader.load("/fonts/DM_Sans_Regular.json", (font) => {
 
   scene.add(text);
 
-  // This is a way to measuse the time, in combination with timeEnd
+  // This is a way to measure the time, in combination with timeEnd
   console.time("donuts");
 
   const donutGeometry = new THREE.TorusBufferGeometry(0.2, 0.1, 20, 45);

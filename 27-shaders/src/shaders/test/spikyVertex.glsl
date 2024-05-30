@@ -23,6 +23,7 @@ uniform mat4 modelViewMatrix;
 
 uniform vec2 uFrequency;
 uniform float uTime;
+uniform float uScale;
 
 // This is the vertex created in BufferAttribute
 attribute vec3 position;
@@ -43,11 +44,14 @@ void main()
     vec4 modelPosition = modelMatrix * vec4(position, 1.0);
 
     // Create random value to move vertices randomly
-    float randomOffset = aRandom * 0.05;
+    float randomOffset = 0.0; //aRandom * 0.05;
 
     // Make waves by moving vertices z value based on x and y axis
-    float elevation = sin(modelPosition.x * uFrequency.x - uTime) * 0.1 + randomOffset 
-        + sin(modelPosition.y * uFrequency.y - uTime) * 0.1 + randomOffset;
+    // float elevation = sin(modelPosition.x * uFrequency.x - uTime) * 0.1 + randomOffset 
+    //     + sin(modelPosition.y * uFrequency.y - uTime) * 0.1 + randomOffset;
+
+
+    float elevation = cos(modelPosition.x / (uScale * 0.25)) * -0.5;
 
     modelPosition.z += elevation;
 

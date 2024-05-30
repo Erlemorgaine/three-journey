@@ -41,14 +41,14 @@ gui.add(directionalLight.position, "y").min(-5).max(5).step(0.001);
 gui.add(directionalLight.position, "z").min(-5).max(5).step(0.001);
 
 scene.add(directionalLight);
-directionalLight.castShadow = true;
+// directionalLight.castShadow = true;
 
 // directionalLight.shadow is where the info about the shadowMap is stored
 // You shouldn't make these map values too big, for performance
 directionalLight.shadow.mapSize.width = 1024;
 directionalLight.shadow.mapSize.height = 1024;
 
-// For directional light it's an orthographic camera, since rays are parallell
+// For directional light it's an orthographic camera, since rays are parallel
 // We can set amplitude to make shadows more sharp (smaller amplitude)
 directionalLight.shadow.camera.top = 1;
 directionalLight.shadow.camera.right = 1;
@@ -59,7 +59,7 @@ directionalLight.shadow.camera.near = 1;
 directionalLight.shadow.camera.far = 6;
 
 // You can increase radius to blur the shadow
-directionalLight.shadow.radius = 15;
+directionalLight.shadow.radius = 25;
 
 // Helper to show the camera that the light uses to create shadowmaps
 // You can use this.e.g. to adjust near and far, amplitude, etc, to optimise the camera and avoid bugs
@@ -81,8 +81,8 @@ spotLight.shadow.camera.far = 6;
 
 spotLight.position.set(0, 2, 2);
 
-scene.add(spotLight);
-scene.add(spotLight.target);
+// scene.add(spotLight);
+// scene.add(spotLight.target);
 
 // It seems that the order matters, we should to this last
 const spotLightCamHelper = new THREE.CameraHelper(spotLight.shadow.camera);
@@ -95,6 +95,18 @@ const spotLightCamHelper = new THREE.CameraHelper(spotLight.shadow.camera);
 const pointLight = new THREE.PointLight(0xffff, 0.3);
 pointLight.castShadow = true;
 pointLight.position.set(-1, 1, 0);
+
+// You shouldn't make these map values too big, for performance
+pointLight.shadow.mapSize.width = 2048;
+pointLight.shadow.mapSize.height = 2048;
+
+pointLight.shadow.camera.near = 1;
+pointLight.shadow.camera.far = 16;
+
+// You can increase radius to blur the shadow
+pointLight.shadow.radius = 50;
+pointLight.shadow.bias = 0.1;
+
 scene.add(pointLight);
 
 const pointLightCamHelper = new THREE.CameraHelper(pointLight.shadow.camera);
@@ -137,18 +149,18 @@ plane.receiveShadow = true;
 scene.add(sphere, plane);
 
 const sphereShadow = new THREE.Mesh(
-  new THREE.PlaneBufferGeometry(1.5, 1.5),
-  new THREE.MeshBasicMaterial({
-    color: 0xff,
-    alphaMap: simpleShadow,
-    transparent: true,
-  })
+  new THREE.PlaneBufferGeometry(1.5, 1.5)
+  // new THREE.MeshBasicMaterial({
+  //   color: 0xff,
+  //   alphaMap: simpleShadow,
+  //   transparent: true,
+  // })
 );
 
 sphereShadow.rotation.x = Math.PI * -0.5;
 sphereShadow.position.y = plane.position.y + 0.01;
 
-scene.add(sphereShadow);
+// scene.add(sphereShadow);
 
 /**
  * Sizes
@@ -201,13 +213,13 @@ const renderer = new THREE.WebGLRenderer({
   canvas: canvas,
 });
 
-// renderer.shadowMap.enabled = true;
+renderer.shadowMap.enabled = true;
 
 // Here you can set shadowmap algorithms.
 // They differ in performance and how soft they will be on the edges
 // For this map, radius won't work anymore to set blur
 // Default: PCFShadowMap
-renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+// renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
 renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -221,9 +233,9 @@ const tick = () => {
   const elapsedTime = clock.getElapsedTime();
 
   // Move sphere and its shadow
-  sphere.position.x = Math.cos(elapsedTime);
-  sphere.position.z = Math.sin(elapsedTime);
-  sphere.position.y = Math.abs(Math.sin(elapsedTime * 3));
+  // sphere.position.x = Math.cos(elapsedTime);
+  // sphere.position.z = Math.sin(elapsedTime);
+  sphere.position.y = Math.abs(Math.sin(elapsedTime * 0.25));
 
   sphereShadow.position.x = Math.cos(elapsedTime);
   sphereShadow.position.z = Math.sin(elapsedTime);

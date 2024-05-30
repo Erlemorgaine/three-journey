@@ -5,7 +5,6 @@ import * as dat from "lil-gui";
 
 // To be able to load this, you need to allow shaders in webpack, see webpack.common.js
 import spikyVertexShader from "./shaders/test/spikyVertex.glsl";
-import blobbyFragmentShader from "./shaders/test/blobbyFragment.glsl";
 import textureFragmentShader from "./shaders/test/textureFragment.glsl";
 
 /**
@@ -35,6 +34,7 @@ const geometry = new THREE.PlaneGeometry(1, 1, 256, 256);
 // Get count of vertices
 const count = geometry.attributes.position.count;
 const randoms = new Float32Array(count);
+const xScale = 6;
 
 for (let i = 0; i < count; i++) {
   randoms[i] = Math.random() - 0.5;
@@ -48,6 +48,8 @@ geometry.setAttribute("aRandom", new THREE.BufferAttribute(randoms, 1));
 const material = new THREE.RawShaderMaterial({
   vertexShader: spikyVertexShader,
   fragmentShader: textureFragmentShader,
+  blending: THREE.AdditiveBlending,
+  side: THREE.DoubleSide,
   //   fragmentShader: blobbyFragmentShader,
   transparent: true,
   uniforms: {
@@ -55,10 +57,13 @@ const material = new THREE.RawShaderMaterial({
     uTime: { value: 0 },
     uColor: { value: new THREE.Color("hsl(20, 100%, 50%)") },
     uTexture: { value: flagTexture },
+    uScale: { value: xScale },
   },
   // There are some properties that still work, but others that won't,
   // since they will be handled by the fragment shader
 });
+
+// const material = new THREE.MeshBasicMaterial({ color: 0xff });
 
 gui
   .add(material.uniforms.uFrequency.value, "x")
@@ -96,7 +101,7 @@ gui
 
 // Mesh
 const mesh = new THREE.Mesh(geometry, material);
-mesh.scale.setScalar(1.25);
+mesh.scale.set(xScale, 4.5, 1);
 scene.add(mesh);
 
 /**
@@ -131,7 +136,7 @@ const camera = new THREE.PerspectiveCamera(
   0.1,
   100
 );
-camera.position.set(0.25, -0.25, 1);
+camera.position.set(0.25, -0.25, 5);
 scene.add(camera);
 
 // Controls

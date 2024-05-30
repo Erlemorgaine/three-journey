@@ -298,7 +298,7 @@ void main()
     // // when drawing point (x, y) on the plane
     // float strength = length(vUv - 0.5);
 
-    // // Or: distance. Provides distance between vUv and point (for x and y)
+    // Or: distance. Provides distance between vUv and point (for x and y)
     // strength = distance(vUv, vec2(0.5));
     // strength = distance(vUv, vec2(0.25));
 
